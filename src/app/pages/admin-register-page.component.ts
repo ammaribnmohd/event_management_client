@@ -4,6 +4,9 @@ import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
 import { RouterLink } from '@angular/router';
 import { ApiService } from '../core/services/api.service';
 
+const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+const phoneRegex = /^(?=(?:.*\d){7,15}$)\+?[0-9\s\-()]+$/;
+
 @Component({
   selector: 'app-admin-register-page',
   standalone: true,
@@ -19,10 +22,11 @@ export class AdminRegisterPageComponent {
   success = '';
 
   readonly form = this.fb.nonNullable.group({
-    username: ['', Validators.required],
-    email: ['', [Validators.required, Validators.email]],
-    password: ['', Validators.required],
-    confirmPassword: ['', Validators.required],
+    username: ['', [Validators.required, Validators.minLength(3)]],
+    email: ['', [Validators.required, Validators.pattern(emailRegex)]],
+    phone: ['', [Validators.required, Validators.pattern(phoneRegex)]],
+    password: ['', [Validators.required, Validators.minLength(6)]],
+    confirmPassword: ['', [Validators.required]],
   });
 
   submit(): void {

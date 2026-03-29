@@ -5,6 +5,9 @@ import { ActivatedRoute, Router, RouterLink } from '@angular/router';
 import { EventItem } from '../core/models';
 import { ApiService } from '../core/services/api.service';
 
+const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+const phoneRegex = /^(?=(?:.*\d){7,15}$)\+?[0-9\s\-()]+$/;
+
 @Component({
   selector: 'app-event-register-page',
   standalone: true,
@@ -25,8 +28,8 @@ export class EventRegisterPageComponent implements OnInit {
 
   readonly form = this.fb.nonNullable.group({
     name: ['', [Validators.required]],
-    email: ['', [Validators.required, Validators.email]],
-    phone: ['', [Validators.required, Validators.pattern(/^[0-9\-\(\)\/\+\s]*$/)]],
+    email: ['', [Validators.required, Validators.pattern(emailRegex)]],
+    phone: ['', [Validators.required, Validators.pattern(phoneRegex)]],
   });
 
   ngOnInit(): void {

@@ -11,12 +11,13 @@
   </header>
 
   <form class="toolbar" (ngSubmit)="submitSearch()">
-    <input [(ngModel)]="query.search" name="search" placeholder="Search events by title" />
+    <input [(ngModel)]="query.search" name="search" placeholder="Search events by title" (input)="onSearchInput()" />
     <button type="submit">Search</button>
-    <button type="button" (click)="sortBy('title')">Sort Title</button>
-    <button type="button" (click)="sortBy('event_date')">Sort Date</button>
-    <button type="button" (click)="toggleOrder()">
-      {{ query.order === 'ASC' ? 'Descending' : 'Ascending' }}
+    <button type="button" (click)="sortBy('title')">
+      Sort Title {{ query.sort === 'title' ? '(' + (query.order === 'ASC' ? 'asc' : 'desc') + ')' : '' }}
+    </button>
+    <button type="button" (click)="sortBy('event_date')">
+      Sort Date {{ query.sort === 'event_date' ? '(' + (query.order === 'ASC' ? 'asc' : 'desc') + ')' : '' }}
     </button>
   </form>
 

@@ -8,21 +8,53 @@
     <label>
       Username
       <input formControlName="username" />
+      <small class="error" *ngIf="form.controls.username.touched && form.controls.username.hasError('required')">
+        Username is required.
+      </small>
+      <small class="error" *ngIf="form.controls.username.touched && form.controls.username.hasError('minlength')">
+        Username must be at least 3 characters.
+      </small>
     </label>
 
     <label>
       Email
       <input type="email" formControlName="email" />
+      <small class="error" *ngIf="form.controls.email.touched && form.controls.email.hasError('required')">
+        Email is required.
+      </small>
+      <small class="error" *ngIf="form.controls.email.touched && form.controls.email.hasError('pattern')">
+        Enter a valid email address.
+      </small>
+    </label>
+
+    <label>
+      Phone
+      <input type="tel" formControlName="phone" />
+      <small class="error" *ngIf="form.controls.phone.touched && form.controls.phone.hasError('required')">
+        Phone number is required.
+      </small>
+      <small class="error" *ngIf="form.controls.phone.touched && form.controls.phone.hasError('pattern')">
+        Enter a valid phone number (7 to 15 digits, optional +, spaces or dashes).
+      </small>
     </label>
 
     <label>
       Password
       <input type="password" formControlName="password" />
+      <small class="error" *ngIf="form.controls.password.touched && form.controls.password.hasError('required')">
+        Password is required.
+      </small>
+      <small class="error" *ngIf="form.controls.password.touched && form.controls.password.hasError('minlength')">
+        Password must be at least 6 characters.
+      </small>
     </label>
 
     <label>
       Confirm Password
       <input type="password" formControlName="confirmPassword" />
+      <small class="error" *ngIf="form.controls.confirmPassword.touched && form.controls.confirmPassword.hasError('required')">
+        Confirm password is required.
+      </small>
     </label>
 
     <div class="actions">

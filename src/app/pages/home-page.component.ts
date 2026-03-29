@@ -43,8 +43,21 @@ export class HomePageComponent implements OnInit {
     this.navigate({ page: 1 });
   }
 
+  onSearchInput(): void {
+    if (this.query.search === '') {
+      this.navigate({ page: 1 });
+    }
+  }
+
   sortBy(sort: 'title' | 'event_date'): void {
-    this.navigate({ sort, page: 1 });
+    if (this.query.sort === sort) {
+      // Toggle order if same sort is clicked
+      const newOrder = this.query.order === 'ASC' ? 'DESC' : 'ASC';
+      this.navigate({ order: newOrder, page: 1 });
+    } else {
+      // Reset to ascending when switching sort field
+      this.navigate({ sort, order: 'ASC', page: 1 });
+    }
   }
 
   toggleOrder(): void {

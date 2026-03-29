@@ -54,8 +54,22 @@ export class AdminDashboardPageComponent implements OnInit {
     this.loadEvents();
   }
 
+  onSearchInput(): void {
+    if (this.query.search === '') {
+      this.query.page = 1;
+      this.loadEvents();
+    }
+  }
+
   sortBy(value: 'title' | 'event_date'): void {
-    this.query.sort = value;
+    if (this.query.sort === value) {
+      // Toggle order if same sort is clicked
+      this.query.order = this.query.order === 'ASC' ? 'DESC' : 'ASC';
+    } else {
+      // Reset to ascending when switching sort field
+      this.query.sort = value;
+      this.query.order = 'ASC';
+    }
     this.query.page = 1;
     this.loadEvents();
   }

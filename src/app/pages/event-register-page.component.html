@@ -9,16 +9,31 @@
     <label>
       Name
       <input formControlName="name" />
+      <small class="error" *ngIf="form.controls.name.touched && form.controls.name.hasError('required')">
+        Name is required.
+      </small>
     </label>
 
     <label>
       Email
       <input formControlName="email" type="email" />
+      <small class="error" *ngIf="form.controls.email.touched && form.controls.email.hasError('required')">
+        Email is required.
+      </small>
+      <small class="error" *ngIf="form.controls.email.touched && form.controls.email.hasError('pattern')">
+        Enter a valid email address.
+      </small>
     </label>
 
     <label>
       Phone
       <input formControlName="phone" />
+      <small class="error" *ngIf="form.controls.phone.touched && form.controls.phone.hasError('required')">
+        Phone number is required.
+      </small>
+      <small class="error" *ngIf="form.controls.phone.touched && form.controls.phone.hasError('pattern')">
+        Enter a valid phone number (7 to 15 digits, optional +, spaces or dashes).
+      </small>
     </label>
 
     <div class="actions">

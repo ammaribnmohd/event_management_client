@@ -23,6 +23,7 @@ export class ApiService {
   registerAdmin(payload: {
     username: string;
     email: string;
+    phone: string;
     password: string;
     confirmPassword: string;
   }): Observable<{ success: boolean; message: string }> {

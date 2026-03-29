@@ -17,12 +17,13 @@
     <h2>All Events</h2>
 
     <div class="toolbar">
-      <input [(ngModel)]="query.search" placeholder="Search events by name" />
+      <input [(ngModel)]="query.search" placeholder="Search events by name" (input)="onSearchInput()" />
       <button type="button" (click)="searchEvents()">Search</button>
-      <button type="button" (click)="sortBy('title')">Sort Title</button>
-      <button type="button" (click)="sortBy('event_date')">Sort Date</button>
-      <button type="button" (click)="toggleOrder()">
-        {{ query.order === 'ASC' ? 'Descending' : 'Ascending' }}
+      <button type="button" (click)="sortBy('title')">
+        Sort Title {{ query.sort === 'title' ? '(' + (query.order === 'ASC' ? 'asc' : 'desc') + ')' : '' }}
+      </button>
+      <button type="button" (click)="sortBy('event_date')">
+        Sort Date {{ query.sort === 'event_date' ? '(' + (query.order === 'ASC' ? 'asc' : 'desc') + ')' : '' }}
       </button>
     </div>
 
