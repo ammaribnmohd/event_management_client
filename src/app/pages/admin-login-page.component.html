@@ -1,0 +1,22 @@
+<section class="form-shell">
+  <h1>Admin Login</h1>
+
+  <p class="error" *ngIf="error">{{ error }}</p>
+
+  <form [formGroup]="form" (ngSubmit)="submit()">
+    <label>
+      Username
+      <input formControlName="username" />
+    </label>
+
+    <label>
+      Password
+      <input type="password" formControlName="password" />
+    </label>
+
+    <div class="actions">
+      <button type="submit">Login</button>
+      <a routerLink="/admin/register" class="ghost">Create Account</a>
+    </div>
+  </form>
+</section>

@@ -1,0 +1,31 @@
+<section class="form-shell" *ngIf="!loading && event as currentEvent">
+  <h1>Register for {{ currentEvent.title }}</h1>
+  <p *ngIf="currentEvent.is_full" class="error">This event is already at full capacity.</p>
+
+  <p class="success" *ngIf="message">{{ message }}</p>
+  <p class="error" *ngIf="error">{{ error }}</p>
+
+  <form [formGroup]="form" (ngSubmit)="submit()" *ngIf="!currentEvent.is_full && !message">
+    <label>
+      Name
+      <input formControlName="name" />
+    </label>
+
+    <label>
+      Email
+      <input formControlName="email" type="email" />
+    </label>
+
+    <label>
+      Phone
+      <input formControlName="phone" />
+    </label>
+
+    <div class="actions">
+      <button type="submit">Register</button>
+      <a routerLink="/" class="ghost">Cancel</a>
+    </div>
+  </form>
+
+  <a routerLink="/" *ngIf="currentEvent.is_full || message">Back to Events</a>
+</section>

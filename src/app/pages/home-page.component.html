@@ -1,0 +1,54 @@
+<section class="shell">
+  <header class="hero">
+    <div>
+      <h1>Upcoming Events</h1>
+      <p>Explore events and reserve your spot before capacity fills up.</p>
+    </div>
+    <div class="hero-actions">
+      <a routerLink="/admin/login">Admin Login</a>
+      <a routerLink="/admin/register" class="secondary">Admin Register</a>
+    </div>
+  </header>
+
+  <form class="toolbar" (ngSubmit)="submitSearch()">
+    <input [(ngModel)]="query.search" name="search" placeholder="Search events by title" />
+    <button type="submit">Search</button>
+    <button type="button" (click)="sortBy('title')">Sort Title</button>
+    <button type="button" (click)="sortBy('event_date')">Sort Date</button>
+    <button type="button" (click)="toggleOrder()">
+      {{ query.order === 'ASC' ? 'Descending' : 'Ascending' }}
+    </button>
+  </form>
+
+  <p class="error" *ngIf="error">{{ error }}</p>
+  <p class="loading" *ngIf="loading">Loading events...</p>
+
+  <section class="grid" *ngIf="!loading">
+    <article class="event-card" *ngFor="let event of events">
+      <h2>{{ event.title }}</h2>
+      <p>{{ event.description }}</p>
+      <ul>
+        <li><strong>Date:</strong> {{ event.event_date }}</li>
+        <li><strong>Time:</strong> {{ event.event_time }}</li>
+        <li><strong>Location:</strong> {{ event.location }}</li>
+        <li><strong>Capacity:</strong> {{ event.attendee_count ?? 0 }} / {{ event.max_capacity }}</li>
+      </ul>
+      <button type="button" [routerLink]="['/events', event.id, 'register']" [disabled]="event.is_full">
+        Register
+      </button>
+      <p *ngIf="event.is_full">Event member is maxed out</p>
+    </article>
+  </section>
+
+  <nav class="pagination" *ngIf="pagination.totalPages > 1">
+    <button (click)="goToPage(query.page - 1)" [disabled]="query.page === 1">Previous</button>
+    <button
+      *ngFor="let page of pages()"
+      (click)="goToPage(page)"
+      [class.active]="page === query.page"
+    >
+      {{ page }}
+    </button>
+    <button (click)="goToPage(query.page + 1)" [disabled]="query.page === pagination.totalPages">Next</button>
+  </nav>
+</section>

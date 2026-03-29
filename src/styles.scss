@@ -1,0 +1,83 @@
+@import url('https://fonts.googleapis.com/css2?family=Sora:wght@400;500;600;700;800&family=Source+Sans+3:wght@400;600;700&display=swap');
+
+:root {
+	--bg-gradient: radial-gradient(circle at 0% 0%, #fff1d8 0%, #ffe2d5 25%, #e4f2ff 60%, #d7e7ff 100%);
+	--surface: rgba(255, 255, 255, 0.84);
+	--surface-elevated: rgba(255, 255, 255, 0.95);
+	--surface-soft: rgba(255, 255, 255, 0.72);
+	--border: rgba(15, 23, 42, 0.12);
+	--border-strong: rgba(15, 23, 42, 0.28);
+	--text-primary: #111827;
+	--text-secondary: #334155;
+	--brand: #0f766e;
+	--brand-strong: #0b5f59;
+	--accent: #f97316;
+	--danger: #dc2626;
+	--success: #15803d;
+	--shadow: 0 16px 40px rgba(15, 23, 42, 0.15);
+	--ring: 0 0 0 3px rgba(15, 118, 110, 0.28);
+}
+
+:root[data-theme='dark'] {
+	--bg-gradient: radial-gradient(circle at 10% 10%, #12364f 0%, #0a1f3b 40%, #0b1220 100%);
+	--surface: rgba(15, 23, 42, 0.78);
+	--surface-elevated: rgba(15, 23, 42, 0.92);
+	--surface-soft: rgba(30, 41, 59, 0.72);
+	--border: rgba(148, 163, 184, 0.25);
+	--border-strong: rgba(148, 163, 184, 0.46);
+	--text-primary: #e5e7eb;
+	--text-secondary: #cbd5e1;
+	--brand: #14b8a6;
+	--brand-strong: #2dd4bf;
+	--accent: #f59e0b;
+	--danger: #f87171;
+	--success: #4ade80;
+	--shadow: 0 20px 44px rgba(2, 6, 23, 0.52);
+	--ring: 0 0 0 3px rgba(20, 184, 166, 0.3);
+}
+
+* {
+	box-sizing: border-box;
+}
+
+body {
+	margin: 0;
+	font-family: 'Source Sans 3', 'Trebuchet MS', sans-serif;
+	background: var(--bg-gradient);
+	background-attachment: fixed;
+	color: var(--text-primary);
+	line-height: 1.45;
+}
+
+h1,
+h2,
+h3,
+h4 {
+	font-family: 'Sora', 'Segoe UI', sans-serif;
+	letter-spacing: -0.01em;
+}
+
+a,
+button,
+input,
+textarea {
+	font: inherit;
+}
+
+a,
+button {
+	transition: transform 140ms ease, box-shadow 140ms ease, background-color 180ms ease, border-color 180ms ease;
+}
+
+a:hover,
+button:hover {
+	box-shadow: var(--shadow);
+}
+
+input:focus,
+textarea:focus,
+button:focus-visible,
+a:focus-visible {
+	outline: none;
+	box-shadow: var(--ring);
+}

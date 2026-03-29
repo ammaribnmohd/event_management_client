@@ -1,0 +1,25 @@
+main {
+	min-height: 100vh;
+	padding: 1rem;
+}
+
+.theme-toggle {
+	position: fixed;
+	top: 1rem;
+	right: 1rem;
+	z-index: 20;
+	border: 1px solid var(--border-strong);
+	background: var(--surface-elevated);
+	color: var(--text-primary);
+	padding: 0.5rem 0.85rem;
+	border-radius: 999px;
+	font-weight: 700;
+	cursor: pointer;
+	box-shadow: 0 12px 30px rgba(2, 6, 23, 0.2);
+	backdrop-filter: blur(8px);
+}
+
+.theme-toggle:hover {
+	transform: translateY(-1px);
+}
+

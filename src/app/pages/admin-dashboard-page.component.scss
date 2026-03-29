@@ -1,0 +1,140 @@
+.dashboard-shell {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 3.2rem 1rem 4rem;
+}
+
+.dashboard-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1rem;
+  flex-wrap: wrap;
+  margin-bottom: 0.9rem;
+}
+
+.dashboard-header h1 {
+  margin: 0;
+}
+
+.header-actions,
+.toolbar,
+.actions {
+  display: flex;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+}
+
+.toolbar {
+  padding: 0.85rem;
+  border: 1px solid var(--border);
+  border-radius: 0.85rem;
+  background: var(--surface);
+}
+
+input,
+button,
+a {
+  padding: 0.58rem 0.78rem;
+  border: 1px solid var(--border-strong);
+  border-radius: 0.55rem;
+  font: inherit;
+}
+
+input {
+  background: var(--surface-elevated);
+  color: var(--text-primary);
+}
+
+button,
+a {
+  background: linear-gradient(180deg, var(--brand) 0%, var(--brand-strong) 100%);
+  color: #fff;
+  border-color: var(--brand);
+  cursor: pointer;
+  text-decoration: none;
+  font-weight: 700;
+}
+
+.secondary {
+  background: var(--surface-elevated);
+  border-color: var(--border-strong);
+  color: var(--text-primary);
+}
+
+.danger {
+  background: linear-gradient(180deg, #ef4444 0%, #dc2626 100%);
+  border-color: #dc2626;
+}
+
+.table-wrap {
+  overflow: auto;
+  background: var(--surface-elevated);
+  border: 1px solid var(--border);
+  border-radius: 0.9rem;
+  box-shadow: var(--shadow);
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 0.8rem;
+}
+
+th,
+td {
+  border: 1px solid var(--border);
+  padding: 0.62rem;
+  text-align: left;
+}
+
+th {
+  background: var(--surface-soft);
+}
+
+.pagination {
+  display: flex;
+  justify-content: center;
+  gap: 0.35rem;
+  margin-top: 1rem;
+}
+
+.pagination .active {
+  background: linear-gradient(180deg, var(--accent) 0%, #ea580c 100%);
+  border-color: #ea580c;
+}
+
+.modal {
+  position: fixed;
+  inset: 0;
+  background: rgba(2, 6, 23, 0.66);
+  display: grid;
+  place-items: center;
+  padding: 1rem;
+}
+
+.modal-card {
+  width: min(760px, 100%);
+  max-height: 85vh;
+  overflow: auto;
+  background: var(--surface-elevated);
+  border-radius: 0.85rem;
+  border: 1px solid var(--border);
+  padding: 1rem;
+}
+
+.modal-head {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.error {
+  color: var(--danger);
+}
+
+@media (max-width: 640px) {
+  .dashboard-shell {
+    padding-top: 4rem;
+  }
+}

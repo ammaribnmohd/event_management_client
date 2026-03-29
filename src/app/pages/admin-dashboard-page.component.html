@@ -1,0 +1,129 @@
+<section class="dashboard-shell">
+  <header class="dashboard-header">
+    <h1>Admin Dashboard</h1>
+    <div class="header-actions">
+      <a routerLink="/admin/events/new">Create New Event</a>
+      <button type="button" class="secondary" (click)="showAttendeeList = !showAttendeeList">
+        {{ showAttendeeList ? 'View Events' : 'View All Attendees' }}
+      </button>
+      <button type="button" class="danger" (click)="logout()">Logout</button>
+    </div>
+  </header>
+
+  <p class="error" *ngIf="error">{{ error }}</p>
+  <p *ngIf="loading">Loading...</p>
+
+  <section *ngIf="!showAttendeeList">
+    <h2>All Events</h2>
+
+    <div class="toolbar">
+      <input [(ngModel)]="query.search" placeholder="Search events by name" />
+      <button type="button" (click)="searchEvents()">Search</button>
+      <button type="button" (click)="sortBy('title')">Sort Title</button>
+      <button type="button" (click)="sortBy('event_date')">Sort Date</button>
+      <button type="button" (click)="toggleOrder()">
+        {{ query.order === 'ASC' ? 'Descending' : 'Ascending' }}
+      </button>
+    </div>
+
+    <div class="table-wrap">
+      <table>
+        <thead>
+          <tr>
+            <th>Title</th>
+            <th>Date</th>
+            <th>Location</th>
+            <th>Capacity</th>
+            <th>Registered</th>
+            <th>Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let event of events">
+            <td>{{ event.title }}</td>
+            <td>{{ event.event_date }} {{ event.event_time }}</td>
+            <td>{{ event.location }}</td>
+            <td>{{ event.max_capacity }}</td>
+            <td>{{ event.attendee_count }}</td>
+            <td class="actions">
+              <button type="button" (click)="openAttendeesModal(event)">Attendees</button>
+              <a [routerLink]="['/admin/events', event.id, 'edit']">Edit</a>
+              <button type="button" class="secondary" (click)="downloadReport(event)">Report</button>
+              <button type="button" class="danger" (click)="deleteEvent(event)">Delete</button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <nav class="pagination" *ngIf="pagination.totalPages > 1">
+      <button (click)="goToPage(query.page - 1)" [disabled]="query.page === 1">Previous</button>
+      <button
+        *ngFor="let page of pages()"
+        (click)="goToPage(page)"
+        [class.active]="page === query.page"
+      >
+        {{ page }}
+      </button>
+      <button (click)="goToPage(query.page + 1)" [disabled]="query.page === pagination.totalPages">Next</button>
+    </nav>
+  </section>
+
+  <section *ngIf="showAttendeeList">
+    <h2>All Attendees</h2>
+    <input [(ngModel)]="attendeesSearch" placeholder="Search attendees by name" />
+
+    <div class="table-wrap">
+      <table>
+        <thead>
+          <tr>
+            <th>Name</th>
+            <th>Email</th>
+            <th>Event</th>
+            <th>Event Date</th>
+            <th>Location</th>
+            <th>Registration Date</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let attendee of filteredAttendees()">
+            <td>{{ attendee.name }}</td>
+            <td>{{ attendee.email }}</td>
+            <td>{{ attendee.event_title || 'Event deleted' }}</td>
+            <td>{{ attendee.event_date || 'N/A' }}</td>
+            <td>{{ attendee.location || 'N/A' }}</td>
+            <td>{{ attendee.registration_date | date: 'medium' }}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <div class="modal" *ngIf="showModal">
+    <div class="modal-card">
+      <div class="modal-head">
+        <h3>Attendees for {{ selectedEventTitle }}</h3>
+        <button type="button" class="secondary" (click)="closeModal()">Close</button>
+      </div>
+
+      <table *ngIf="selectedAttendees.length > 0">
+        <thead>
+          <tr>
+            <th>Name</th>
+            <th>Email</th>
+            <th>Registration Date</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let attendee of selectedAttendees">
+            <td>{{ attendee.name }}</td>
+            <td>{{ attendee.email }}</td>
+            <td>{{ attendee.registration_date | date: 'medium' }}</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <p *ngIf="selectedAttendees.length === 0">No attendees registered for this event yet.</p>
+    </div>
+  </div>
+</section>

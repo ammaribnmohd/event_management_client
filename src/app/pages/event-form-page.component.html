@@ -1,0 +1,44 @@
+<section class="form-shell">
+  <h1>{{ isEdit ? 'Edit Event' : 'Create New Event' }}</h1>
+
+  <p *ngIf="loading">Loading event...</p>
+  <p class="error" *ngIf="error">{{ error }}</p>
+  <p class="success" *ngIf="success">{{ success }}</p>
+
+  <form [formGroup]="form" (ngSubmit)="submit()" *ngIf="!loading">
+    <label>
+      Title
+      <input formControlName="title" />
+    </label>
+
+    <label>
+      Description
+      <textarea formControlName="description" rows="4"></textarea>
+    </label>
+
+    <label>
+      Date
+      <input type="date" formControlName="eventDate" />
+    </label>
+
+    <label>
+      Time
+      <input type="time" formControlName="eventTime" />
+    </label>
+
+    <label>
+      Location
+      <input formControlName="location" />
+    </label>
+
+    <label>
+      Maximum Capacity
+      <input type="number" formControlName="maxCapacity" min="1" />
+    </label>
+
+    <div class="actions">
+      <button type="submit">{{ isEdit ? 'Update Event' : 'Create Event' }}</button>
+      <a routerLink="/admin/dashboard" class="ghost">Cancel</a>
+    </div>
+  </form>
+</section>
