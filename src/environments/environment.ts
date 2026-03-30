@@ -1,4 +1,4 @@
 export const environment = {
   production: false,
-  apiBaseUrl: 'http://localhost:5000/api',
+  apiBaseUrl: 'https://event-management-server-pi-weld.vercel.app/api',
 };
