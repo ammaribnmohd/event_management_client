@@ -35,6 +35,20 @@ textarea {
   background: var(--surface);
 }
 
+.date-field {
+  display: flex;
+  align-items: center;
+  gap: 0.35rem;
+}
+
+.date-field .mat-mdc-form-field {
+  flex: 1;
+}
+
+.date-field input[matInput] {
+  flex: 1;
+}
+
 .actions {
   display: flex;
   flex-wrap: wrap;

@@ -18,7 +18,20 @@
 
     <label>
       Date
-      <input type="date" formControlName="eventDate" />
+      <div class="date-field">
+        <input
+          matInput
+          [matDatepicker]="eventDatePicker"
+          formControlName="eventDate"
+          [min]="isEdit ? null : minSelectableDate"
+          placeholder="Select date"
+        />
+        <mat-datepicker-toggle [for]="eventDatePicker"></mat-datepicker-toggle>
+        <mat-datepicker #eventDatePicker></mat-datepicker>
+      </div>
+      <small class="error" *ngIf="form.controls.eventDate.touched && form.controls.eventDate.hasError('pastDate')">
+        Please choose today or a future date.
+      </small>
     </label>
 
     <label>

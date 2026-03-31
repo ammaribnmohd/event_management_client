@@ -4,6 +4,7 @@
 	--bg-gradient: radial-gradient(circle at 0% 0%, #fff1d8 0%, #ffe2d5 25%, #e4f2ff 60%, #d7e7ff 100%);
 	--surface: rgba(255, 255, 255, 0.84);
 	--surface-elevated: rgba(255, 255, 255, 0.95);
+	--calendar-surface: rgba(255, 255, 255, 0.98);
 	--surface-soft: rgba(255, 255, 255, 0.72);
 	--border: rgba(15, 23, 42, 0.12);
 	--border-strong: rgba(15, 23, 42, 0.28);
@@ -22,6 +23,7 @@
 	--bg-gradient: radial-gradient(circle at 10% 10%, #12364f 0%, #0a1f3b 40%, #0b1220 100%);
 	--surface: rgba(15, 23, 42, 0.78);
 	--surface-elevated: rgba(15, 23, 42, 0.92);
+	--calendar-surface: rgba(15, 23, 42, 0.98);
 	--surface-soft: rgba(30, 41, 59, 0.72);
 	--border: rgba(148, 163, 184, 0.25);
 	--border-strong: rgba(148, 163, 184, 0.46);
@@ -138,4 +140,27 @@ a:focus-visible {
 
 .mat-mdc-snack-bar-container .mat-mdc-button .mdc-button__label {
 	color: #ffffff !important;
+}
+
+.cdk-overlay-pane .mat-datepicker-content {
+	background: var(--calendar-surface) !important;
+	border: 1px solid var(--border) !important;
+	border-radius: 0.85rem;
+	box-shadow: var(--shadow);
+	color: var(--text-primary);
+	--mat-datepicker-calendar-container-background-color: var(--calendar-surface);
+	--mat-datepicker-calendar-date-text-color: var(--text-primary);
+	--mat-datepicker-calendar-header-text-color: var(--text-primary);
+	--mat-datepicker-calendar-period-button-text-color: var(--text-primary);
+	--mat-datepicker-calendar-navigation-button-icon-color: var(--text-primary);
+	--mat-datepicker-calendar-body-label-text-color: var(--text-secondary);
+	--mat-datepicker-calendar-body-selected-state-background-color: var(--brand);
+	--mat-datepicker-calendar-body-selected-state-text-color: #ffffff;
+	--mat-datepicker-calendar-body-today-outline-color: var(--accent);
+	--mat-datepicker-calendar-date-disabled-state-text-color: rgba(148, 163, 184, 0.65);
+}
+
+.cdk-overlay-pane .mat-datepicker-content .mat-calendar {
+	background: transparent !important;
+	color: var(--text-primary);
 }
