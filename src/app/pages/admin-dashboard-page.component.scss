@@ -26,10 +26,17 @@
 }
 
 .toolbar {
+  display: flex;
+  align-items: center;
   padding: 0.85rem;
   border: 1px solid var(--border);
   border-radius: 0.85rem;
   background: var(--surface);
+}
+
+.toolbar input {
+  flex: 1 1 240px;
+  min-width: 200px;
 }
 
 input,
@@ -67,8 +74,16 @@ a {
   border-color: #dc2626;
 }
 
+.attendee-search {
+  width: 100%;
+  max-width: 420px;
+  margin-bottom: 0.75rem;
+}
+
 .table-wrap {
-  overflow: auto;
+  overflow-x: auto;
+  overflow-y: hidden;
+  -webkit-overflow-scrolling: touch;
   background: var(--surface-elevated);
   border: 1px solid var(--border);
   border-radius: 0.9rem;
@@ -77,6 +92,7 @@ a {
 
 table {
   width: 100%;
+  min-width: 760px;
   border-collapse: collapse;
   margin-top: 0.8rem;
 }
@@ -95,6 +111,7 @@ th {
 .pagination {
   display: flex;
   justify-content: center;
+  flex-wrap: wrap;
   gap: 0.35rem;
   margin-top: 1rem;
 }
@@ -127,6 +144,11 @@ th {
   display: flex;
   justify-content: space-between;
   align-items: center;
+  gap: 0.75rem;
+}
+
+.modal-table-wrap table {
+  min-width: 0;
 }
 
 .error {
@@ -135,6 +157,51 @@ th {
 
 @media (max-width: 640px) {
   .dashboard-shell {
-    padding-top: 4rem;
+    padding: 4rem 0.75rem 2.5rem;
+  }
+
+  .dashboard-header {
+    align-items: flex-start;
+  }
+
+  .header-actions,
+  .toolbar {
+    width: 100%;
+  }
+
+  .header-actions > *,
+  .toolbar > * {
+    width: 100%;
+    text-align: center;
+  }
+
+  .toolbar input {
+    text-align: left;
+  }
+
+  .actions {
+    gap: 0.4rem;
+  }
+
+  td.actions {
+    min-width: 230px;
+  }
+
+  .modal {
+    padding: 0.6rem;
+  }
+
+  .modal-card {
+    max-height: 88vh;
+    padding: 0.85rem;
+  }
+
+  .modal-head {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .modal-head button {
+    width: 100%;
   }
 }

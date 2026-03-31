@@ -72,7 +72,7 @@
 
   <section *ngIf="showAttendeeList">
     <h2>All Attendees</h2>
-    <input [(ngModel)]="attendeesSearch" placeholder="Search attendees by name" />
+    <input class="attendee-search" [(ngModel)]="attendeesSearch" placeholder="Search attendees by name" />
 
     <div class="table-wrap">
       <table>
@@ -107,22 +107,24 @@
         <button type="button" class="secondary" (click)="closeModal()">Close</button>
       </div>
 
-      <table *ngIf="selectedAttendees.length > 0">
-        <thead>
-          <tr>
-            <th>Name</th>
-            <th>Email</th>
-            <th>Registration Date</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr *ngFor="let attendee of selectedAttendees">
-            <td>{{ attendee.name }}</td>
-            <td>{{ attendee.email }}</td>
-            <td>{{ attendee.registration_date | date: 'medium' }}</td>
-          </tr>
-        </tbody>
-      </table>
+      <div class="table-wrap modal-table-wrap" *ngIf="selectedAttendees.length > 0">
+        <table>
+          <thead>
+            <tr>
+              <th>Name</th>
+              <th>Email</th>
+              <th>Registration Date</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let attendee of selectedAttendees">
+              <td>{{ attendee.name }}</td>
+              <td>{{ attendee.email }}</td>
+              <td>{{ attendee.registration_date | date: 'medium' }}</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
 
       <p *ngIf="selectedAttendees.length === 0">No attendees registered for this event yet.</p>
     </div>

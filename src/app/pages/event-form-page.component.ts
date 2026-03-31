@@ -3,6 +3,7 @@ import { Component, OnInit, inject } from '@angular/core';
 import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
 import { ActivatedRoute, Router, RouterLink } from '@angular/router';
 import { ApiService } from '../core/services/api.service';
+import { NotificationService } from '../core/services/notification.service';
 
 @Component({
   selector: 'app-event-form-page',
@@ -16,6 +17,7 @@ export class EventFormPageComponent implements OnInit {
   private readonly route = inject(ActivatedRoute);
   private readonly router = inject(Router);
   private readonly fb = inject(FormBuilder);
+  private readonly notify = inject(NotificationService);
 
   readonly id = this.route.snapshot.paramMap.get('id');
   readonly isEdit = Boolean(this.id);
@@ -80,6 +82,7 @@ export class EventFormPageComponent implements OnInit {
     request.subscribe({
       next: (response) => {
         this.success = response.message;
+        this.notify.success(response.message || (this.isEdit ? 'Event updated' : 'Event created'));
         this.router.navigate(['/admin/dashboard']);
       },
       error: (err) => {

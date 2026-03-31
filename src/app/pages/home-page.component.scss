@@ -28,6 +28,7 @@
 
 .hero-actions {
   display: flex;
+  flex-wrap: wrap;
   gap: 0.5rem;
 }
 
@@ -115,9 +116,28 @@ button[disabled] {
   color: var(--text-primary);
 }
 
+.event-card .location-row {
+  display: flex;
+  align-items: baseline;
+  gap: 0.35rem;
+}
+
+.event-card .location-value {
+  flex: 1;
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.event-card button {
+  margin-top: auto;
+}
+
 .pagination {
   display: flex;
   justify-content: center;
+  flex-wrap: wrap;
   gap: 0.4rem;
   margin-top: 1.6rem;
 }
@@ -137,10 +157,41 @@ button[disabled] {
 
 @media (max-width: 640px) {
   .shell {
-    padding-top: 4rem;
+    padding: 4rem 0.8rem 3rem;
   }
 
   .hero {
     flex-direction: column;
+  }
+
+  .hero-actions {
+    width: 100%;
+  }
+
+  .hero-actions a {
+    flex: 1 1 100%;
+    text-align: center;
+  }
+
+  .toolbar {
+    display: grid;
+    grid-template-columns: 1fr;
+  }
+
+  .toolbar input {
+    min-width: 0;
+    width: 100%;
+  }
+
+  .toolbar button {
+    width: 100%;
+  }
+
+  .grid {
+    grid-template-columns: 1fr;
+  }
+
+  .event-card button {
+    width: 100%;
   }
 }

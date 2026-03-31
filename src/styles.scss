@@ -81,3 +81,61 @@ a:focus-visible {
 	outline: none;
 	box-shadow: var(--ring);
 }
+
+.mat-mdc-snack-bar-container.snackbar-success .mdc-snackbar__surface {
+	background: linear-gradient(180deg, #16a34a 0%, #15803d 100%);
+	color: #ffffff;
+}
+
+.mat-mdc-snack-bar-container.snackbar-error .mdc-snackbar__surface {
+	background: linear-gradient(180deg, #dc2626 0%, #b91c1c 100%);
+	color: #ffffff;
+}
+
+.mat-mdc-snack-bar-container .mat-mdc-button {
+	color: #ffffff !important;
+	--mdc-text-button-label-text-color: #ffffff;
+	--mdc-text-button-container-color: transparent;
+	--mat-text-button-state-layer-color: rgba(255, 255, 255, 0.2);
+	--mat-text-button-ripple-color: rgba(255, 255, 255, 0.28);
+	appearance: none;
+	background-color: transparent !important;
+	border: 0 !important;
+	box-shadow: none !important;
+	transform: none !important;
+}	
+
+.mat-mdc-snack-bar-container .mdc-snackbar__actions {
+	background: transparent !important;
+}
+
+.mat-mdc-snack-bar-container .mat-mdc-snack-bar-action {
+	--mdc-text-button-container-color: transparent;
+	background: transparent !important;
+	border: 0 !important;
+}
+
+.mat-mdc-snack-bar-container .mdc-button,
+.mat-mdc-snack-bar-container .mdc-button__label,
+.mat-mdc-snack-bar-container .mat-mdc-button-touch-target,
+.mat-mdc-snack-bar-container .mat-mdc-button-persistent-ripple::before {
+	background: transparent !important;
+}
+
+.mat-mdc-snack-bar-container button:hover,
+.mat-mdc-snack-bar-container button:focus-visible,
+.mat-mdc-snack-bar-container button:active {
+	box-shadow: none !important;
+}
+
+.mat-mdc-snack-bar-container .mat-mdc-button:hover,
+.mat-mdc-snack-bar-container .mat-mdc-button:focus-visible,
+.mat-mdc-snack-bar-container .mat-mdc-button:active {
+	background-color: rgba(255, 255, 255, 0.14) !important;
+	box-shadow: none !important;
+	transform: none !important;
+}
+
+.mat-mdc-snack-bar-container .mat-mdc-button .mdc-button__label {
+	color: #ffffff !important;
+}

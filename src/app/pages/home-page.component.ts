@@ -1,6 +1,7 @@
 import { CommonModule } from '@angular/common';
 import { Component, OnInit, inject } from '@angular/core';
 import { FormsModule } from '@angular/forms';
+import { MatTooltipModule } from '@angular/material/tooltip';
 import { ActivatedRoute, Router, RouterLink } from '@angular/router';
 import { EventItem, Pagination } from '../core/models';
 import { ApiService } from '../core/services/api.service';
@@ -8,7 +9,7 @@ import { ApiService } from '../core/services/api.service';
 @Component({
   selector: 'app-home-page',
   standalone: true,
-  imports: [CommonModule, FormsModule, RouterLink],
+  imports: [CommonModule, FormsModule, RouterLink, MatTooltipModule],
   templateUrl: './home-page.component.html',
   styleUrl: './home-page.component.scss',
 })
@@ -28,6 +29,7 @@ export class HomePageComponent implements OnInit {
   };
   loading = false;
   error = '';
+  locationOverflow: Record<string, boolean> = {};
 
   ngOnInit(): void {
     this.route.queryParamMap.subscribe((params) => {
@@ -101,5 +103,13 @@ export class HomePageComponent implements OnInit {
 
   pages(): number[] {
     return Array.from({ length: this.pagination.totalPages }, (_unused, i) => i + 1);
+  }
+
+  updateLocationOverflow(eventId: string | number, element: HTMLElement): void {
+    this.locationOverflow[String(eventId)] = element.scrollWidth > element.clientWidth;
+  }
+
+  isLocationOverflow(eventId: string | number): boolean {
+    return Boolean(this.locationOverflow[String(eventId)]);
   }
 }

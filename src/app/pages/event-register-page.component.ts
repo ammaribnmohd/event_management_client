@@ -4,6 +4,7 @@ import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
 import { ActivatedRoute, Router, RouterLink } from '@angular/router';
 import { EventItem } from '../core/models';
 import { ApiService } from '../core/services/api.service';
+import { NotificationService } from '../core/services/notification.service';
 
 const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 const phoneRegex = /^(?=(?:.*\d){7,15}$)\+?[0-9\s\-()]+$/;
@@ -20,6 +21,7 @@ export class EventRegisterPageComponent implements OnInit {
   private readonly router = inject(Router);
   private readonly api = inject(ApiService);
   private readonly fb = inject(FormBuilder);
+  private readonly notify = inject(NotificationService);
 
   event: EventItem | null = null;
   loading = true;
@@ -63,6 +65,7 @@ export class EventRegisterPageComponent implements OnInit {
     this.api.registerForEvent(this.event.id, this.form.getRawValue()).subscribe({
       next: (response) => {
         this.message = response.message;
+        this.notify.success(response.message || 'Event registered successfully');
         this.form.disable();
       },
       error: (err) => {

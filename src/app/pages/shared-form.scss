@@ -26,6 +26,7 @@ label {
 
 input,
 textarea {
+  width: 100%;
   padding: 0.6rem;
   border: 1px solid var(--border-strong);
   border-radius: 0.5rem;
@@ -36,7 +37,13 @@ textarea {
 
 .actions {
   display: flex;
+  flex-wrap: wrap;
   gap: 0.5rem;
+}
+
+.actions > * {
+  flex: 1 1 180px;
+  text-align: center;
 }
 
 button,
@@ -64,4 +71,19 @@ a.ghost {
 
 .success {
   color: var(--success);
+}
+
+@media (max-width: 640px) {
+  .form-shell {
+    margin: 1rem 0.75rem 2rem;
+    padding: 1rem;
+  }
+
+  .form-shell h1 {
+    font-size: 1.4rem;
+  }
+
+  .actions > * {
+    flex-basis: 100%;
+  }
 }

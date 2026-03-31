@@ -3,6 +3,7 @@ import { Component, inject } from '@angular/core';
 import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
 import { RouterLink } from '@angular/router';
 import { ApiService } from '../core/services/api.service';
+import { NotificationService } from '../core/services/notification.service';
 
 const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 const phoneRegex = /^(?=(?:.*\d){7,15}$)\+?[0-9\s\-()]+$/;
@@ -17,6 +18,7 @@ const phoneRegex = /^(?=(?:.*\d){7,15}$)\+?[0-9\s\-()]+$/;
 export class AdminRegisterPageComponent {
   private readonly fb = inject(FormBuilder);
   private readonly api = inject(ApiService);
+  private readonly notify = inject(NotificationService);
 
   error = '';
   success = '';
@@ -40,6 +42,7 @@ export class AdminRegisterPageComponent {
     this.api.registerAdmin(this.form.getRawValue()).subscribe({
       next: (response) => {
         this.success = response.message;
+        this.notify.success(response.message || 'Sign up successful');
         this.form.reset();
       },
       error: (err) => {

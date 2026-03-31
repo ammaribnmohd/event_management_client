@@ -4,6 +4,7 @@ import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
 import { Router, RouterLink } from '@angular/router';
 import { ApiService } from '../core/services/api.service';
 import { AuthService } from '../core/services/auth.service';
+import { NotificationService } from '../core/services/notification.service';
 
 @Component({
   selector: 'app-admin-login-page',
@@ -17,6 +18,7 @@ export class AdminLoginPageComponent {
   private readonly api = inject(ApiService);
   private readonly auth = inject(AuthService);
   private readonly router = inject(Router);
+  private readonly notify = inject(NotificationService);
 
   error = '';
 
@@ -35,6 +37,7 @@ export class AdminLoginPageComponent {
     this.api.login(this.form.getRawValue()).subscribe({
       next: (response) => {
         this.auth.saveSession(response.token, response.admin);
+        this.notify.success('Login successful');
         this.router.navigate(['/admin/dashboard']);
       },
       error: (err) => {

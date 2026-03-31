@@ -31,7 +31,19 @@
       <ul>
         <li><strong>Date:</strong> {{ event.event_date }}</li>
         <li><strong>Time:</strong> {{ event.event_time }}</li>
-        <li><strong>Location:</strong> {{ event.location }}</li>
+        <li class="location-row">
+          <strong>Location:</strong>
+          <span
+            #locationText
+            class="location-value"
+            (mouseenter)="updateLocationOverflow(event.id, locationText)"
+            [matTooltip]="event.location"
+            matTooltipPosition="above"
+            [matTooltipDisabled]="!isLocationOverflow(event.id)"
+          >
+            {{ event.location }}
+          </span>
+        </li>
         <li><strong>Capacity:</strong> {{ event.attendee_count ?? 0 }} / {{ event.max_capacity }}</li>
       </ul>
       <button type="button" [routerLink]="['/events', event.id, 'register']" [disabled]="event.is_full">

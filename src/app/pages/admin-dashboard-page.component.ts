@@ -5,6 +5,7 @@ import { Router, RouterLink } from '@angular/router';
 import { Attendee, EventItem, Pagination } from '../core/models';
 import { ApiService } from '../core/services/api.service';
 import { AuthService } from '../core/services/auth.service';
+import { NotificationService } from '../core/services/notification.service';
 
 @Component({
   selector: 'app-admin-dashboard-page',
@@ -17,6 +18,7 @@ export class AdminDashboardPageComponent implements OnInit {
   private readonly api = inject(ApiService);
   private readonly auth = inject(AuthService);
   private readonly router = inject(Router);
+  private readonly notify = inject(NotificationService);
 
   events: EventItem[] = [];
   allAttendees: Attendee[] = [];
@@ -116,6 +118,7 @@ export class AdminDashboardPageComponent implements OnInit {
 
     this.api.deleteEvent(event.id).subscribe({
       next: () => {
+        this.notify.success('Event deleted successfully');
         this.loadEvents();
         this.loadAllAttendees();
       },
